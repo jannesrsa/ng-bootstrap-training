@@ -47,8 +47,14 @@
       "rating": null,
       "type": "run",
       "date": "2018-9-1",
-      "distance": "2000",
+      "distance": "2001",
       "id": 8
+    },
+    {
+      "type": "bike",
+      "date": "2019-10-06",
+      "distance": "2022",
+      "id": 9
     }
   ],
   "locations": [

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Workout } from '../core/model/workout';
 import { WorkoutsService } from '../services/workouts-service.service';
 import { Observable } from 'rxjs';
-import { tap, debounceTime } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-workouts',

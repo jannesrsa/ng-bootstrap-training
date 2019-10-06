@@ -27,13 +27,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let entry of workouts$ | async as workouts ">
-                        <td>{{entry.data}}</td>
+                        <td>{{entry.date}}</td>
                         <td>{{entry.type}}</td>
                         <td>{{entry.distance}}</td>
                         <td>
-                            <a [routerLink]="['/workouts','entry.id']"
+                            <a [routerLink]="['/workouts',entry.id]"
                                class="btn btn-sm btn-info nr-2">Edit</a>
-                               <button class="btn btn-danger btn-sm" (click)="deleteWorkout(entry)">Delete</button>
+                            <button class="btn btn-danger btn-sm"
+                                    (click)="deleteWorkout(entry)">Delete</button>
                         </td>
                     </tr>
                 </tbody>
