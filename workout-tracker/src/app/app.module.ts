@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { WorkoutsComponent } from './workouts/workouts.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { EntryEditorComponent } from './entry-editor/entry-editor.component';
+import { SharedModule } from './shared/shared.module';
+import { NgxLoadingModule } from 'ngx-loading';
+import { AppStoreModule } from './store/app-store.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { EntryEditorComponent } from './entry-editor/entry-editor.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppStoreModule,
+    SharedModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
