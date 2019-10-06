@@ -24,4 +24,8 @@ export class WorkoutsComponent implements OnInit {
       );
   }
 
+  deleteWorkout(workout: Workout): void {
+    this.workoutService.delete(workout);
+  }
+
 }
