@@ -92,7 +92,9 @@
                                class="form-control"
                                name="wlocation"
                                [(ngModel)]="workout.location"
-                               [ngbTypeahead]="locationsSearch" />
+                               [ngbTypeahead]="locationsSearch"
+                               [resultFormatter]="locationsFormatter" 
+                               [inputFormatter]="locationsFormatter"/>
                     </div>
                 </div>
 
