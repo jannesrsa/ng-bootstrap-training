@@ -9,7 +9,12 @@
       "id": 1,
       "date": "2019-10-8",
       "type": "run",
-      "distance": "104"
+      "distance": "104",
+      "time": {
+        "hour": 10,
+        "minute": 45,
+        "second": 0
+      }
     },
     {
       "id": 2,
@@ -67,6 +72,17 @@
       "type": "row",
       "distance": "111",
       "id": 11
+    },
+    {
+      "date": "2019-10-2",
+      "time": {
+        "hour": 2,
+        "minute": 0,
+        "second": 0
+      },
+      "distance": "222",
+      "type": "run",
+      "id": 12
     }
   ],
   "locations": [
