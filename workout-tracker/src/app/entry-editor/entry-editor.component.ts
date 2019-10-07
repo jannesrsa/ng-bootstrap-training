@@ -3,7 +3,7 @@ import { Workout } from '../core/model/workout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkoutsService } from '../services/workouts-service.service';
 import { NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { debounce, distinctUntilChanged, debounceTime, map } from 'rxjs/operators';
+import { debounce, distinctUntilChanged, debounceTime, map, tap, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { LocationsService } from '../services/locations-service.service';
 import { Location } from '../core/model/location';
@@ -25,16 +25,17 @@ export class EntryEditorComponent implements OnInit {
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
-      map(term => term.length < 2 ? [] :
-        this.locations.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0.10))
+      tap(() => this.loading = true),
+      switchMap(term => this.locationService.getWithQuery(term)),
+      tap(() => this.loading = false),
     );
 
   locationsFormatter = (result) => result.name;
 
   constructor(private router: ActivatedRoute,
     private nav: Router,
-    private workoutsservice: WorkoutsService,
-    private locationservice: LocationsService) {
+    private workoutService: WorkoutsService,
+    private locationService: LocationsService) {
 
     const today = new Date();
     this.maxDate = NgbDate.from({
@@ -46,13 +47,13 @@ export class EntryEditorComponent implements OnInit {
 
   ngOnInit() {
 
-    this.locationservice.getAll().subscribe(data => this.locations = data);
+    this.locationService.getAll().subscribe(data => this.locations = data);
 
     this.router.params.subscribe(params => {
       this.newEntry = params.id === 'new';
       if (!this.newEntry) {
         this.loading = true;
-        this.workoutsservice.getByKey(params.id).subscribe(data => {
+        this.workoutService.getByKey(params.id).subscribe(data => {
           this.workout = data;
           let d = new Date(this.workout.date);
           this.startDate = { year: d.getFullYear(), month: d.getMonth() + 1 };
@@ -66,13 +67,13 @@ export class EntryEditorComponent implements OnInit {
     this.loading = true;
 
     if (this.newEntry) {
-      this.workoutsservice.upsert(this.workout).subscribe(data => {
+      this.workoutService.upsert(this.workout).subscribe(data => {
         this.loading = false;
         this.nav.navigate(['/workouts']);
       })
     }
     else {
-      this.workoutsservice.update(this.workout).subscribe(data => {
+      this.workoutService.update(this.workout).subscribe(data => {
         this.loading = false;
         this.nav.navigate(['/workouts']);
       })
