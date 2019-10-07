@@ -3,6 +3,8 @@ import { Workout } from '../core/model/workout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkoutsService } from '../services/workouts-service.service';
 import { NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { debounce, distinctUntilChanged, debounceTime, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-entry-editor',
@@ -15,8 +17,16 @@ export class EntryEditorComponent implements OnInit {
   newEntry = false;
   startDate: any;
   maxDate: NgbDateStruct;
-  currentRate: Number;
+  locations = ["Main Gym", "CrossFit"]
 
+  locationsSearch = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? [] :
+        this.locations.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0.10))
+    );
+    
   constructor(private router: ActivatedRoute,
     private nav: Router,
     private api: WorkoutsService) { }
