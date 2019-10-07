@@ -10,11 +10,12 @@ import { NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./entry-editor.component.css']
 })
 export class EntryEditorComponent implements OnInit {
-  workout: Workout = {} as Workout;
+  workout: Workout = { rating: 0 } as Workout;
   loading = false;
   newEntry = false;
   startDate: any;
   maxDate: NgbDateStruct;
+  currentRate: Number;
 
   constructor(private router: ActivatedRoute,
     private nav: Router,

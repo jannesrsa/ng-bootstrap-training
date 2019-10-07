@@ -1,0 +1,16 @@
+.star{
+    font-size:1.5rem;
+    color: lightgreen
+}
+
+.filled{
+    color:green
+}
+
+.bad{
+    color:pink
+}
+
+.filled.bad{
+    color:red
+}
