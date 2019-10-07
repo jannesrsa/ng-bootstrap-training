@@ -7,9 +7,9 @@
   "workouts": [
     {
       "id": 1,
-      "date": "2018-8-4",
-      "type": "bike",
-      "distance": "101"
+      "date": "2019-10-8",
+      "type": "run",
+      "distance": "104"
     },
     {
       "id": 2,
@@ -25,7 +25,7 @@
     },
     {
       "type": "run",
-      "date": "2018-8-31",
+      "date": "2020-1-5",
       "distance": "120",
       "id": 5,
       "rating": null
@@ -55,6 +55,18 @@
       "date": "2019-10-06",
       "distance": "2022",
       "id": 9
+    },
+    {
+      "type": "run",
+      "date": "2019-10-08",
+      "distance": "10",
+      "id": 10
+    },
+    {
+      "date": "2019-10-11",
+      "type": "row",
+      "distance": "111",
+      "id": 11
     }
   ],
   "locations": [

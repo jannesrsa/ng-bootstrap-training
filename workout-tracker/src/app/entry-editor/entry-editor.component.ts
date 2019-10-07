@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Workout } from '../core/model/workout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WorkoutsService } from '../services/workouts-service.service';
+import { NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-entry-editor',
@@ -12,6 +13,8 @@ export class EntryEditorComponent implements OnInit {
   workout: Workout = {} as Workout;
   loading = false;
   newEntry = false;
+  startDate: any;
+  maxDate: NgbDateStruct;
 
   constructor(private router: ActivatedRoute,
     private nav: Router,
@@ -19,6 +22,12 @@ export class EntryEditorComponent implements OnInit {
 
   ngOnInit() {
 
+    const today = new Date();
+    this.maxDate = NgbDate.from({
+      year: today.getFullYear(),
+      month: today.getMonth() + 1,
+      day: today.getDate() + 1
+    });
 
     this.router.params.subscribe(params => {
       this.newEntry = params.id === 'new';
@@ -26,6 +35,8 @@ export class EntryEditorComponent implements OnInit {
         this.loading = true;
         this.api.getByKey(params.id).subscribe(data => {
           this.workout = data;
+          let d = new Date(this.workout.date);
+          this.startDate = { year: d.getFullYear(), month: d.getMonth() + 1 };
           this.loading = false;
         })
       }

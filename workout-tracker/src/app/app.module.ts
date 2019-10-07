@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
+import {NgbModule, NgbDateAdapter} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -11,6 +12,7 @@ import { EntryEditorComponent } from './entry-editor/entry-editor.component';
 import { SharedModule } from './shared/shared.module';
 import { NgxLoadingModule } from 'ngx-loading';
 import { AppStoreModule } from './store/app-store.module';
+import { DateStringAdapterService } from './services/date-string-adapter.service';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,10 @@ import { AppStoreModule } from './store/app-store.module';
     AppRoutingModule,
     AppStoreModule,
     SharedModule,
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    NgbModule
   ],
-  providers: [],
+  providers: [{provide: NgbDateAdapter, useClass: DateStringAdapterService}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
