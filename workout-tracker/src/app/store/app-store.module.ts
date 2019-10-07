@@ -6,7 +6,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 
-const apiRoot = "http://localhost:3000/";
+const apiRoot = "http://10.0.0.136:4410/";
 const defaultDataServiceConfig: DefaultDataServiceConfig = {
   root: apiRoot,
   entityHttpResourceUrls: {

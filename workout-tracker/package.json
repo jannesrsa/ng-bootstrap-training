@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o --host 0.0.0.0 --port 4409",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +24,7 @@
     "@ngrx/entity": "^8.3.0",
     "@ngrx/store": "^8.3.0",
     "@ngrx/store-devtools": "^8.3.0",
+    "bootstrap": "^4.3.1",
     "ngx-loading": "^3.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
