@@ -13,24 +13,26 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 export class WorkoutsComponent implements OnInit {
 
   workouts$: Observable<Workout[]>;
-  loading = false;
+  loading$: Observable<boolean>;
 
   constructor(private workoutService: WorkoutsService,
     private modal: NgbModal) {
+    this.workouts$ = workoutService.entities$;
+    this.loading$ = workoutService.loading$;
   }
 
   ngOnInit() {
-    this.loading = true;
-    this.workouts$ = this.workoutService.getAll()
-      .pipe(
-        tap(() => this.loading = false)
-      );
+    this.getWorkouts();
+  }
+
+  private getWorkouts() {
+    this.workoutService.getAll();
   }
 
   deleteWorkout(workout: Workout, deleteModal: any): void {
     const options: NgbModalOptions = { size: 'sm' }
 
-    this.modal.open(deleteModal,options).result.then(result => {
+    this.modal.open(deleteModal, options).result.then(result => {
       this.workoutService.delete(workout);
     }, reason => console.log(`Dismissed: ${reason}`));
   }
