@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Workout } from '../core/model/workout';
 import { WorkoutsService } from '../services/workouts-service.service';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -32,9 +31,11 @@ export class WorkoutsComponent implements OnInit {
   deleteWorkout(workout: Workout, deleteModal: any): void {
     const options: NgbModalOptions = { size: 'sm' }
 
-    this.modal.open(deleteModal, options).result.then(result => {
-      this.workoutService.delete(workout);
-    }, reason => console.log(`Dismissed: ${reason}`));
+    this.modal.open(deleteModal, options)
+      .result
+      .then(
+        () => this.workoutService.delete(workout),
+        reason => console.log(`Dismissed: ${reason}`));
   }
 
 }
