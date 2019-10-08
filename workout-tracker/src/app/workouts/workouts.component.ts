@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Workout } from '../core/model/workout';
 import { WorkoutsService } from '../services/workouts-service.service';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { PerformanceTargetsService } from '../services/performancetargets-service.service';
+import { PerformanceTargets } from '../core/model/performancetargets';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-workouts',
@@ -12,12 +15,25 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 export class WorkoutsComponent implements OnInit {
 
   workouts$: Observable<Workout[]>;
+  performanceTargets$: Observable<PerformanceTargets[]>;
+
   loading$: Observable<boolean>;
 
   constructor(private workoutService: WorkoutsService,
+    performanceTargetsService: PerformanceTargetsService,
     private modal: NgbModal) {
+
     this.workouts$ = workoutService.entities$;
-    this.loading$ = workoutService.loading$;
+    this.performanceTargets$ = performanceTargetsService.entities$;
+
+    this.loading$ = combineLatest(
+      workoutService.loading$,
+      performanceTargetsService.loading$)
+      .pipe(
+        map(([workouts, performanceTargets]) => {
+          return workouts || performanceTargets;
+        }),
+      );
   }
 
   ngOnInit() {

@@ -12,7 +12,7 @@ const defaultDataServiceConfig: DefaultDataServiceConfig = {
   entityHttpResourceUrls: {
     Location: { entityResourceUrl: apiRoot + 'locations/', collectionResourceUrl: apiRoot + 'locations/' },
     Workout: { entityResourceUrl: apiRoot + 'workouts/', collectionResourceUrl: apiRoot + 'workouts/' },
-    PerformanceTarget: { entityResourceUrl: apiRoot + 'performanceTargets/', collectionResourceUrl: apiRoot + 'performanceTargets/' },
+    PerformanceTargets: { entityResourceUrl: apiRoot + 'performanceTargets/', collectionResourceUrl: apiRoot + 'performanceTargets/' },
   }
 };
 
