@@ -14,6 +14,7 @@ import { NgxLoadingModule } from 'ngx-loading';
 import { AppStoreModule } from './store/app-store.module';
 import { DateStringAdapterService } from './services/date-string-adapter.service';
 import { PerformanceTargetsModalComponent } from './performance-targets-modal/performance-targets-modal.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
    declarations: [
@@ -22,7 +23,8 @@ import { PerformanceTargetsModalComponent } from './performance-targets-modal/pe
       WorkoutsComponent,
       NavMenuComponent,
       EntryEditorComponent,
-      PerformanceTargetsModalComponent
+      PerformanceTargetsModalComponent,
+      AdminComponent
    ],
    imports: [
       BrowserModule,
