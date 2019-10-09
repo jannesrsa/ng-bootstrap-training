@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PerformanceTargets } from '../core/model/performancetargets';
-import { PerformanceTargetsService } from '../services/performancetargets-service.service';
-import { Observable } from 'rxjs';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-performance-targets-modal',
@@ -10,12 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class PerformanceTargetsModalComponent implements OnInit {
 
-  public perfTargets$: Observable<PerformanceTargets>;
+  public perfTargets: PerformanceTargets;
 
-  constructor() {
+  constructor(public activeModal: NgbActiveModal) {
   }
 
   ngOnInit() {
-    console.log(`perfTargets`);
+  }
+
+  save() {
+    this.activeModal.close(this.perfTargets);
   }
 }

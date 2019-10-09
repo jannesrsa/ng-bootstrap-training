@@ -28,14 +28,14 @@ export class EntryEditorComponent implements OnInit {
       tap(() => this.loading = true),
       switchMap(term => this.locationService.getWithQuery(term)),
       tap(() => this.loading = false),
-    );
+    )
 
   locationsFormatter = (result) => result.name;
 
   constructor(private router: ActivatedRoute,
-    private nav: Router,
-    private workoutService: WorkoutsService,
-    private locationService: LocationsService) {
+              private nav: Router,
+              private workoutService: WorkoutsService,
+              private locationService: LocationsService) {
 
     const today = new Date();
     this.maxDate = NgbDate.from({
@@ -55,12 +55,12 @@ export class EntryEditorComponent implements OnInit {
         this.loading = true;
         this.workoutService.getByKey(params.id).subscribe(data => {
           this.workout = data;
-          let d = new Date(this.workout.date);
+          const d = new Date(this.workout.date);
           this.startDate = { year: d.getFullYear(), month: d.getMonth() + 1 };
           this.loading = false;
-        })
+        });
       }
-    })
+    });
   }
 
   save(): void {
@@ -70,13 +70,12 @@ export class EntryEditorComponent implements OnInit {
       this.workoutService.upsert(this.workout).subscribe(data => {
         this.loading = false;
         this.nav.navigate(['/workouts']);
-      })
-    }
-    else {
+      });
+    } else {
       this.workoutService.update(this.workout).subscribe(data => {
         this.loading = false;
         this.nav.navigate(['/workouts']);
-      })
+      });
     }
   }
 
