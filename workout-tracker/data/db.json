@@ -1,9 +1,12 @@
 {
-  "performanceTargets": {
-    "bike": "1000",
-    "run": "2200",
-    "row": "1500"
-  },
+  "performanceTargets": [
+    {
+      "id": 1,
+      "bike": "1000",
+      "run": "2200",
+      "row": "1500"
+    }
+  ],
   "workouts": [
     {
       "id": 1,
